@@ -1,0 +1,3 @@
+[submodule "micropython-pyb"]
+	path = micropython-pyb
+	url = https://github.com/dastultz/micropython-pyb.git
