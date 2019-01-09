@@ -5,8 +5,7 @@
     <ProjectGuid>6187de49-a140-42c9-bfa7-fba2a1cbf271</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>main.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\micropython-pyb\lib</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>AccelLog</Name>
@@ -21,6 +20,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\micropython-pyb\lib\pyb.py">
+      <Link>pyb.py</Link>
+    </Compile>
     <Compile Include="boot.py">
       <SubType>Code</SubType>
     </Compile>
@@ -28,7 +30,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py" />
-    <Compile Include="pyb.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
