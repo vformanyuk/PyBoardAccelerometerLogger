@@ -4,12 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6187de49-a140-42c9-bfa7-fba2a1cbf271</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>dataDecode.py</StartupFile>
     <SearchPath>..\micropython-pyb\lib</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>AccelLog</Name>
     <RootNamespace>AccelLog</RootNamespace>
+    <InterpreterId>Global|ContinuumAnalytics|Anaconda36-64</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,10 +27,19 @@
     <Compile Include="boot.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="constants.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dataDecode.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="empty.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda36-64" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
