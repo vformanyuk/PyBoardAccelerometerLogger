@@ -2,8 +2,10 @@ import pyb
 import struct
 import constants
 
+#todo: consider writing time stamp again, but in a for of delta - time-time0
 buf_size = 16 # how much records is stored in single buffer
 logging = False # do not write anything by default
+number_of_measurements = 10 # how manyy measurements taken to produce result avg value
 
 def switch_callback():
     global logging
@@ -34,10 +36,15 @@ while True:
         idx = 0
         while logging:
             a = accel.filtered_xyz()
-            buf[idx * constants.data_len:(idx + 1) * constants.data_len] = struct.pack(constants.data_fmt,a[0],a[1],a[2]) #12 bytes
+            for _ in range(0,number_of_measurements - 1):
+                a += accel.filtered_xyz()
+                pyb.delay(10)
+            x = sum(j for i,j in enumerate(a) if i % 3 == 0)
+            y = sum(j for i,j in enumerate(a) if i % 3 == 1)
+            z = sum(j for i,j in enumerate(a) if i % 3 == 2)
+            buf[idx * constants.data_len:(idx + 1) * constants.data_len] = struct.pack(constants.data_fmt, int(x / number_of_measurements), int(y / number_of_measurements), int(z / number_of_measurements)) #12 bytes
             if idx == buf_size - 1:
                 log.write(buf)
                 idx = 0
             else:
                 idx+=1
-                pyb.delay(100)
